@@ -10,7 +10,7 @@ export interface VNode<Attributes = {}> {
   nodeName: string
   attributes?: Attributes
   children: Array<VNode | string>
-  key: string | number | null
+  key: string | number | null;
 }
 
 /** A Component is a function that returns a custom VNode or View.
@@ -75,7 +75,7 @@ export type ActionsType<State, Actions> = {
  * @memberOf [App]
  */
 export interface View<State, Actions> {
-  (state: State, actions: Actions): VNode<object> | null
+  (state: State, actions: Actions): JSX.Element | null;
 }
 
 /** The app() call creates and renders a new application.
@@ -98,7 +98,7 @@ export function app<State, Actions>(
 
 declare global {
   namespace JSX {
-    interface Element extends VNode<any> {}
+    type Element = VNode | View<any, any>;
     interface IntrinsicElements {
       [elemName: string]: any
     }
